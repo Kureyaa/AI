@@ -254,7 +254,10 @@ def main():
     mode = sys.argv[1].strip().lower()
     map_file = sys.argv[2].strip()
     algorithm = sys.argv[3].strip().lower()
-    heuristic = sys.argv[4].strip().lower()
+    if algorithm == "bfs" or algorithm == "ucs":
+        heuristic = None
+    else:        
+        heuristic = sys.argv[4].strip().lower()
 
     rows, cols, start, goal, grid = read_map_file(map_file)
 
