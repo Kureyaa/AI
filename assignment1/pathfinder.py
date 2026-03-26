@@ -68,7 +68,7 @@ def move_cost(current, next, grid):
     else:
         return 1
 
-def reconstruct_path(parent, goal):
+def travelled_path(parent, goal):
     if goal not in parent:
         return None  
     
@@ -107,7 +107,7 @@ def bfs(rows, cols, start, goal, grid):
         last_visit[r][c] = time
 
         if current == goal:
-            return reconstruct_path(parent, goal), visits, first_visit, last_visit
+            return travelled_path(parent, goal), visits, first_visit, last_visit
 
         for nbr in get_neighbors(current, rows, cols, grid):
             if nbr not in visited:
@@ -141,7 +141,7 @@ def ucs(rows, cols, start, goal, grid):
         last_visit[r][c] = time
 
         if current == goal:
-            return reconstruct_path(parent, goal), visits, first_visit, last_visit
+            return travelled_path(parent, goal), visits, first_visit, last_visit
 
         if current_cost > best_cost[current]:
             continue
@@ -187,7 +187,7 @@ def astar(rows, cols, start, goal, grid, heuristic_name):
         last_visit[r][c] = time
 
         if current == goal:
-            return reconstruct_path(parent, goal), visits, first_visit, last_visit
+            return travelled_path(parent, goal), visits, first_visit, last_visit
 
         if current_g > best_cost[current]:
             continue
