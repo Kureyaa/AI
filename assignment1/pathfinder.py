@@ -238,15 +238,20 @@ def create_matrix(rows, cols, value):
 def print_debug_matrix(matrix, grid):
     for r in range(len(matrix)):
         row = []
+        
         for c in range(len(matrix[0])):
+            
             if grid[r][c] == "X":
                 row.append("X")
+                
             else:
                 val = matrix[r][c]
                 if val is None or val == 0:
                     row.append(".")
+                    
                 else:
                     row.append(str(val))
+                    
         print(" ".join(row))
         
         
@@ -254,6 +259,7 @@ def main():
     mode = sys.argv[1].strip().lower()
     map_file = sys.argv[2].strip()
     algorithm = sys.argv[3].strip().lower()
+    
     if algorithm == "bfs" or algorithm == "ucs":
         heuristic = None
     else:        
@@ -263,14 +269,17 @@ def main():
 
     if algorithm == "bfs":
         path, visits, first_visit, last_visit = bfs(rows, cols, start, goal, grid)
+        
     elif algorithm == "ucs":
         path, visits, first_visit, last_visit = ucs(rows, cols, start, goal, grid)
+        
     elif algorithm == "astar":
         path, visits, first_visit, last_visit = astar(rows, cols, start, goal, grid, heuristic)
 
     if mode == "release":
         if path is None:
             print("null")
+            
         else:
             output_grid = make_path(grid, path)
             print_grid(output_grid)
@@ -279,6 +288,7 @@ def main():
         print("path:")
         if path is None:
             print("null")
+            
         else:
             output_grid = make_path(grid, path)
             print_grid(output_grid)
